@@ -247,7 +247,7 @@
     @apply p-2 px-2 text-sm font-medium;
   }
   .components-disclosure-title {
-    @apply flex items-center text-sm text-primary;
+    @apply flex items-center text-sm;
   }
   .components-disclosure-div {
     @apply flex gap-2;
@@ -575,7 +575,9 @@
   }
 
   .header-arrangement {
-    @apply flex-max-width h-12 items-center justify-between border-b border-border bg-muted;
+    @apply flex-max-width items-center justify-between border-b border-border;
+    /* background: linear-gradient(to right, rgba(46, 160, 17, 1), rgba(131, 204, 60, 0.8)); */
+    height: 56px;
   }
   .header-start-display {
     @apply flex items-center gap-2;

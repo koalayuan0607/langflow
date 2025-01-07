@@ -1,6 +1,4 @@
 import { useContext } from "react";
-import { FaDiscord, FaGithub } from "react-icons/fa";
-import { RiTwitterXFill } from "react-icons/ri";
 import { useLocation } from "react-router-dom";
 import AlertDropdown from "../../alerts/alertDropDown";
 import {
@@ -12,17 +10,14 @@ import { AuthContext } from "../../contexts/authContext";
 
 import { useLogout } from "@/controllers/API/queries/auth";
 import { CustomLink } from "@/customization/components/custom-link";
-import { DOCS_LINK } from "@/customization/config-constants";
 import {
   ENABLE_DARK_MODE,
-  ENABLE_PROFILE_ICONS,
-  ENABLE_SOCIAL_LINKS,
+  ENABLE_PROFILE_ICONS
 } from "@/customization/feature-flags";
 import { useCustomNavigate } from "@/customization/hooks/use-custom-navigate";
 import useAuthStore from "@/stores/authStore";
 import useAlertStore from "../../stores/alertStore";
 import { useDarkStore } from "../../stores/darkStore";
-import { useStoreStore } from "../../stores/storeStore";
 import IconComponent, { ForwardedIconComponent } from "../genericIconComponent";
 import { Button } from "../ui/button";
 import {
@@ -47,11 +42,9 @@ export default function Header(): JSX.Element {
   const { mutate: mutationLogout } = useLogout();
 
   const navigate = useCustomNavigate();
-  const hasStore = useStoreStore((state) => state.hasStore);
 
   const dark = useDarkStore((state) => state.dark);
   const setDark = useDarkStore((state) => state.setDark);
-  const stars = useDarkStore((state) => state.stars);
 
   const profileImageUrl = `${BASE_URL_API}files/profile_pictures/${
     userData?.profile_image ?? "Space/046-rocket.svg"
@@ -78,7 +71,7 @@ export default function Header(): JSX.Element {
     <div className="header-arrangement relative">
       <div className="header-start-display">
         <CustomLink to="/all" className="cursor-pointer">
-          <span className="ml-4 text-2xl">⛓️</span>
+          <span className="ml-4 text-xl font-medium">NSF Flow</span>
         </CustomLink>
         {showArrowReturnIcon && (
           <Button
@@ -94,7 +87,7 @@ export default function Header(): JSX.Element {
         <MenuBar />
       </div>
 
-      <div className="flex items-center xl:absolute xl:left-1/2 xl:-translate-x-1/2">
+      {/* <div className="flex items-center xl:absolute xl:left-1/2 xl:-translate-x-1/2">
         <CustomLink to="/all">
           <Button
             className="gap-2"
@@ -111,56 +104,9 @@ export default function Header(): JSX.Element {
           </Button>
         </CustomLink>
 
-        {hasStore && (
-          <CustomLink to="/store">
-            <Button
-              className="gap-2"
-              variant={
-                location.pathname.includes("/store") ? "primary" : "secondary"
-              }
-              size="sm"
-              data-testid="button-store"
-            >
-              <IconComponent name="Store" className="h-4 w-4" />
-              <div className="hidden flex-1 lg:block">Store</div>
-            </Button>
-          </CustomLink>
-        )}
-      </div>
+      </div> */}
       <div className="header-end-division">
         <div className="header-end-display">
-          {ENABLE_SOCIAL_LINKS && (
-            <>
-              <a
-                href="https://github.com/langflow-ai/langflow"
-                target="_blank"
-                rel="noreferrer"
-                className="header-github-link gap-2"
-              >
-                <FaGithub className="h-5 w-5" />
-                <div className="hidden lg:block">Star</div>
-                <div className="header-github-display">{stars ?? 0}</div>
-              </a>
-              <a
-                href="https://twitter.com/langflow_ai"
-                target="_blank"
-                rel="noreferrer"
-                className="text-muted-foreground"
-              >
-                <RiTwitterXFill className="side-bar-button-size" />
-              </a>
-              <a
-                href="https://discord.gg/EqksyE2EX9"
-                target="_blank"
-                rel="noreferrer"
-                className="text-muted-foreground"
-              >
-                <FaDiscord className="side-bar-button-size" />
-              </a>
-
-              <Separator orientation="vertical" />
-            </>
-          )}
           {ENABLE_DARK_MODE && (
             <button
               className="extra-side-bar-save-disable"
@@ -254,34 +200,6 @@ export default function Header(): JSX.Element {
                   </>
                 )}
                 <DropdownMenuSeparator />
-                <DropdownMenuLabel>Help</DropdownMenuLabel>
-                <DropdownMenuItem
-                  className="cursor-pointer gap-2"
-                  onClick={() =>
-                    window.open(
-                      DOCS_LINK || "https://docs.langflow.org/",
-                      "_blank",
-                    )
-                  }
-                >
-                  <ForwardedIconComponent name="FileText" className="w-4" />
-                  Docs
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="cursor-pointer gap-2"
-                  onClick={() =>
-                    window.open(
-                      "https://github.com/langflow-ai/langflow/discussions",
-                      "_blank",
-                    )
-                  }
-                >
-                  <ForwardedIconComponent
-                    name="MessagesSquare"
-                    className="w-4"
-                  />
-                  Discussions
-                </DropdownMenuItem>
                 {!autoLogin && (
                   <>
                     <DropdownMenuSeparator />
