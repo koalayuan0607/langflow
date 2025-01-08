@@ -153,7 +153,7 @@ export default function UndrawCardComponent({
         </div>
       </CardContent>
       <CardDescription className="px-6 pb-4">
-        <CardTitle className="text-lg text-primary">{flow.name}</CardTitle>
+        <CardTitle className="text-lg">{flow.name}</CardTitle>
       </CardDescription>
     </Card>
   );

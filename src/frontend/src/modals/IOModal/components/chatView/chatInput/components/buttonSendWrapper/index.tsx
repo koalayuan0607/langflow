@@ -6,7 +6,7 @@ import { FilePreviewType } from "../../../../../../../types/components";
 import { classNames } from "../../../../../../../utils/utils";
 
 const BUTTON_STATES = {
-  NO_INPUT: "bg-high-indigo text-background",
+  NO_INPUT: "bg-primary text-background",
   HAS_CHAT_VALUE: "text-primary",
   SHOW_STOP: "bg-error text-background cursor-pointer",
   DEFAULT: "bg-chat-send text-background",
