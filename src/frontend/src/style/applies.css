@@ -1208,6 +1208,14 @@
     @apply flex h-8 w-8 items-center justify-center rounded-md bg-muted p-[6px];
   }
 
+  .bg-primary1 {
+    background-color: hsl(var(--primary) / 0.7)
+  }
+
+  .bg-primary2 {
+    background-color: hsl(var(--primary) / 0.4)
+  }
+
   .integration-icon {
     @apply h-8 w-8 rounded-md;
   }

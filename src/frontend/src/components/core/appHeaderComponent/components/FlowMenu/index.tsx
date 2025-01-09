@@ -98,7 +98,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
     }
     // return savedText;
     return (
-      <div className="shrink-0 text-xs font-medium text-accent-emerald-foreground">
+      <div className="shrink-0 text-xs font-medium text-primary">
         Saved
       </div>
     );
@@ -119,7 +119,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
         {currentFolder?.name && (
           <div className="hidden truncate md:flex">
             <div
-              className="cursor-pointer truncate text-muted-foreground hover:text-primary"
+              className="cursor-pointer truncate hover:text-primary"
               onClick={() => {
                 navigate(
                   currentFolder?.id

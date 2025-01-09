@@ -130,7 +130,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
           </div>
         </div>
 
-        <div className="line-clamp-2 h-full pt-5 text-sm text-primary">
+        <div className="line-clamp-2 h-full pt-5 text-sm">
           {flowData.description}
         </div>
       </Card>

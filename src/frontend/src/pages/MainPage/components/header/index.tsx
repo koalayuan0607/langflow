@@ -81,7 +81,7 @@ const HeaderComponent = ({
                 onClick={() => setFlowType(type as "flows" | "components")}
                 className={`border-b ${
                   flowType === type
-                    ? "border-b-2 border-foreground text-foreground"
+                    ? "border-b-2 border-primary text-foreground"
                     : "border-border text-muted-foreground hover:text-foreground"
                 } px-3 pb-2 text-sm`}
               >

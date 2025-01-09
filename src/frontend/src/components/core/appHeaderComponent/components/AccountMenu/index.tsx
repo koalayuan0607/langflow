@@ -9,7 +9,6 @@ import useAuthStore from "@/stores/authStore";
 import { useDarkStore } from "@/stores/darkStore";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import GithubStarComponent from "../GithubStarButton";
 import {
   HeaderMenu,
   HeaderMenuItemButton,
@@ -84,41 +83,6 @@ export const AccountMenu = () => {
                 )}
               </>
             )}
-            {ENABLE_DATASTAX_LANGFLOW ? (
-              <HeaderMenuItemButton onClick={() => setIsFeedbackOpen(true)}>
-                Feedback
-              </HeaderMenuItemButton>
-            ) : (
-              <HeaderMenuItemLink newPage href="https://docs.langflow.org">
-                Docs
-              </HeaderMenuItemLink>
-            )}
-          </HeaderMenuItemsSection>
-          <HeaderMenuItemsSection>
-            {ENABLE_DATASTAX_LANGFLOW ? (
-              <HeaderMenuItemLink
-                newPage
-                href="https://github.com/langflow-ai/langflow"
-              >
-                <div className="-my-2 mr-2 flex w-full items-center justify-between">
-                  <div className="text-sm">Star the repo</div>
-                  <GithubStarComponent />
-                </div>
-              </HeaderMenuItemLink>
-            ) : (
-              <HeaderMenuItemLink
-                newPage
-                href="https://github.com/langflow-ai/langflow/discussions"
-              >
-                Share Feedback on Github
-              </HeaderMenuItemLink>
-            )}
-            <HeaderMenuItemLink newPage href="https://twitter.com/langflow_ai">
-              Follow Langflow on X
-            </HeaderMenuItemLink>
-            <HeaderMenuItemLink newPage href="https://discord.gg/EqksyE2EX9">
-              Join the Langflow Discord
-            </HeaderMenuItemLink>
           </HeaderMenuItemsSection>
           {ENABLE_DATASTAX_LANGFLOW ? (
             <HeaderMenuItemsSection>
