@@ -111,7 +111,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                 Edited {timeElapsed(flowData.updated_at)} ago
               </div>
             </div>
-            <div className="overflow-hidden text-sm text-primary">
+            <div className="overflow-hidden text-sm">
               <span className="block max-w-[110ch] truncate">
                 {flowData.description}
               </span>

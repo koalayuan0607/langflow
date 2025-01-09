@@ -362,7 +362,7 @@ function GenericNode({
         className={cn(
           borderColor,
           showNode ? "w-80" : `w-48`,
-          "generic-node-div group/node relative rounded-xl shadow-sm hover:shadow-md",
+          "generic-node-div group/node relative rounded-xl shadow-md hover:shadow-xl",
           !hasOutputs && "pb-4",
         )}
       >
@@ -393,7 +393,7 @@ function GenericNode({
         <div
           data-testid={`${data.id}-main-node`}
           className={cn(
-            "grid gap-3 truncate text-wrap p-4 leading-5",
+            "generic-node-div-header grid gap-3 truncate text-wrap p-4 leading-5",
             showNode && "border-b",
           )}
         >
