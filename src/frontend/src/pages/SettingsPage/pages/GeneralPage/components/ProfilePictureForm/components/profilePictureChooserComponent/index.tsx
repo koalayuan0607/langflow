@@ -6,6 +6,7 @@ import { BASE_URL_API } from "../../../../../../../../constants/constants";
 import { useDarkStore } from "../../../../../../../../stores/darkStore";
 import { cn } from "../../../../../../../../utils/utils";
 import usePreloadImages from "./hooks/use-preload-images";
+import { buildUrlWithJwtoken } from "../../../../../../../../utils/api-utils";
 
 type ProfilePictureChooserComponentProps = {
   profilePictures?: ProfilePicturesQueryResponse;
@@ -54,9 +55,8 @@ export default function ProfilePictureChooserComponent({
                   >
                     <img
                       key={idx}
-                      src={`${BASE_URL_API}files/profile_pictures/${
-                        folder + "/" + path
-                      }`}
+                      src={buildUrlWithJwtoken(`${BASE_URL_API}files/profile_pictures/${
+                        folder}/${path}`)}
                       style={{
                         filter:
                           value === folder + "/" + path

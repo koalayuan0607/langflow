@@ -1599,7 +1599,7 @@ export const createNewFlow = (
     description: flow?.description ?? getRandomDescription(),
     name: flow?.name ? flow.name : "Untitled document",
     data: flowData,
-    id: "",
+    id: flow?.id ?? "",
     icon: flow?.icon ?? undefined,
     gradient: flow?.gradient ?? undefined,
     is_component: flow?.is_component ?? false,

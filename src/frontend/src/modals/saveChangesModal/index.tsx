@@ -26,11 +26,11 @@ export function SaveChangesModal({
       onClose={onCancel}
       destructiveCancel
       title={
-        (autoSave ? "Flow" : truncate(flowName, { length: 32 })) +
-        " has unsaved changes"
+        (autoSave ? "智能体" : truncate(flowName, { length: 32 })) +
+        " 有未保存的更改"
       }
-      cancelText={autoSave ? undefined : "Exit anyway"}
-      confirmationText={autoSave ? undefined : "Save and Exit"}
+      cancelText={autoSave ? undefined : "退出"}
+      confirmationText={autoSave ? undefined : "保存并退出"}
       onConfirm={
         autoSave
           ? undefined
@@ -47,23 +47,23 @@ export function SaveChangesModal({
         {autoSave ? (
           <div className="mb-4 flex w-full items-center gap-3 rounded-md bg-muted px-4 py-2 text-muted-foreground">
             <Loading className="h-5 w-5" />
-            Saving your changes...
+            正在保存您的更改...
           </div>
         ) : (
           <>
             <div className="mb-4 flex w-full items-center gap-3 rounded-md bg-yellow-100 px-4 py-2 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-100">
               <ForwardedIconComponent name="Info" className="h-5 w-5" />
-              Last saved: {lastSaved ?? "Never"}
+              上次保存: {lastSaved ?? "从未"}
             </div>
-            Unsaved changes will be permanently lost.{" "}
+            未保存的更改将永久丢失。{" "}
             <a
               target="_blank"
               className="underline"
               href="https://docs.langflow.org/configuration-auto-saving"
             >
-              Enable auto-saving
+              启用自动保存
             </a>{" "}
-            to avoid losing progress.
+            以避免丢失进度。
           </>
         )}
       </ConfirmationModal.Content>

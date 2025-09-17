@@ -42,11 +42,12 @@ const useAddFlow = () => {
     flow?: FlowType;
     override?: boolean;
     new_blank?: boolean;
+    refreshIds?: boolean;
   }) => {
     return new Promise(async (resolve, reject) => {
       const flow = cloneDeep(params?.flow) ?? undefined;
       let flowData = flow
-        ? await processDataFromFlow(flow)
+        ? await processDataFromFlow(flow, params?.refreshIds ?? true)
         : { nodes: [], edges: [], viewport: { zoom: 1, x: 0, y: 0 } };
       flowData?.nodes.forEach((node) => {
         updateGroupRecursion(

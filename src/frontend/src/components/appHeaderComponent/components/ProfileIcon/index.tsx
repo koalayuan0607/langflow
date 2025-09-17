@@ -1,13 +1,14 @@
 import { AuthContext } from "@/contexts/authContext";
 import { BASE_URL_API } from "@/customization/config-constants";
+import { buildUrlWithJwtoken } from "@/utils/api-utils";
 import { useContext } from "react";
 
 export function ProfileIcon() {
   const { userData } = useContext(AuthContext);
 
-  const profileImageUrl = `${BASE_URL_API}files/profile_pictures/${
+  const profileImageUrl = buildUrlWithJwtoken(`${BASE_URL_API}files/profile_pictures/${
     userData?.profile_image ?? "Space/046-rocket.svg"
-  }`;
+  }`);
 
   return (
     <img

@@ -186,13 +186,13 @@ export default function ComponentsComponent({
         handleSelectAll(false);
         setShouldSelectAll(true);
         setSuccessData({
-          title: "Selected items deleted successfully",
+          title: "已成功删除",
         });
       })
       .catch(() => {
         setErrorData({
-          title: "Error deleting items",
-          list: ["Please try again"],
+          title: "删除失败",
+          list: ["请重试"],
         });
       });
   };

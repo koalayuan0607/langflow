@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BASE_URL_API } from "../../../../../../../../../constants/constants";
+import { buildUrlWithJwtoken } from "../../../../../../../../../utils/api-utils";
 
 const usePreloadImages = (
   setImagesLoaded: (value: boolean) => void,
@@ -27,7 +28,7 @@ const usePreloadImages = (
     Object.keys(profilePictures).flatMap((folder) =>
       profilePictures[folder].map((path) =>
         imageArray.push(
-          `${BASE_URL_API}files/profile_pictures/${folder}/${path}`,
+          buildUrlWithJwtoken(`${BASE_URL_API}files/profile_pictures/${folder}/${path}`),
         ),
       ),
     );

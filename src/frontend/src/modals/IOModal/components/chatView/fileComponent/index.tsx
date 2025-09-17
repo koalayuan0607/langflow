@@ -6,6 +6,7 @@ import { fileCardPropsType } from "../../../../../types/components";
 import formatFileName from "../filePreviewChat/utils/format-file-name";
 import DownloadButton from "./components/downloadButton/downloadButton";
 import getClasses from "./utils/get-classes";
+import { buildUrlWithJwtoken } from "../../../../../utils/api-utils";
 
 const imgTypes = new Set(["png", "jpg", "jpeg", "gif", "webp", "image"]);
 
@@ -29,7 +30,7 @@ export default function FileCard({
 
   const fileWrapperClasses = getClasses(isHovered);
 
-  const imgSrc = `${BASE_URL_API}files/images/${path}`;
+  const imgSrc = buildUrlWithJwtoken(`${BASE_URL_API}files/images/${path}`);
 
   if (showFile) {
     if (imgTypes.has(fileType)) {

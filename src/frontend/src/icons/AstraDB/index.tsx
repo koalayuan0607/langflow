@@ -7,5 +7,5 @@ export const AstraDBIcon = forwardRef<
   React.PropsWithChildren<{}>
 >((props, ref) => {
   const isdark = useDarkStore((state) => state.dark);
-  return <AstraSVG ref={ref} isdark={isdark} {...props} />;
+  return <AstraSVG ref={ref} isdark={isdark.toString()} {...props} />;
 });

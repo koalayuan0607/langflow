@@ -78,7 +78,7 @@ export default function NodeName({
         data-testid={"title-" + display_name}
         className={
           showNode
-            ? "nodoubleclick w-full cursor-text truncate font-medium text-primary"
+            ? "nodoubleclick w-full cursor-text truncate font-medium"
             : "cursor-default"
         }
       >

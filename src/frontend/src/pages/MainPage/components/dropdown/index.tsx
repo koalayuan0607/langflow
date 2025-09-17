@@ -82,7 +82,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Download
+        下载
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={(e) => {
@@ -97,7 +97,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Duplicate
+        复制
       </DropdownMenuItem>
       <DropdownMenuItem
         onClick={(e) => {
@@ -111,7 +111,7 @@ const DropdownComponent = ({
           aria-hidden="true"
           className="mr-2 h-4 w-4"
         />
-        Delete
+        删除
       </DropdownMenuItem>
     </>
   );

@@ -57,13 +57,13 @@ export const EditFlowSettings: React.FC<InputProps> = ({
     <>
       <Label>
         <div className="edit-flow-arrangement">
-          <span className="font-medium">Name{setName ? "" : ":"}</span>{" "}
+          <span className="font-medium">名称{setName ? "" : ":"}</span>{" "}
           {isMaxLength && (
-            <span className="edit-flow-span">Character limit reached</span>
+            <span className="edit-flow-span">字符限制已达到</span>
           )}
           {isInvalidName && (
             <span className="edit-flow-span">
-              Name invalid or already exists
+              名称无效或已存在
             </span>
           )}
         </div>
@@ -74,7 +74,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
             type="text"
             name="name"
             value={name ?? ""}
-            placeholder="Flow name"
+            placeholder="智能体名称"
             id="name"
             maxLength={maxLength}
             onDoubleClickCapture={(event) => {
@@ -90,7 +90,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
       <Label>
         <div className="edit-flow-arrangement mt-3">
           <span className="font-medium">
-            Description{setDescription ? " (optional)" : ":"}
+            描述{setDescription ? " (可选)" : ":"}
           </span>
         </div>
         {setDescription ? (
@@ -99,7 +99,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
             id="description"
             onChange={handleDescriptionChange}
             value={description!}
-            placeholder="Flow description"
+            placeholder="智能体描述"
             className="mt-2 max-h-[250px] resize-none font-normal"
             rows={5}
             onDoubleClickCapture={(event) => {
@@ -113,18 +113,17 @@ export const EditFlowSettings: React.FC<InputProps> = ({
               description === "" ? "font-light italic" : "",
             )}
           >
-            {description === "" ? "No description" : description}
+            {description === "" ? "无描述" : description}
           </div>
         )}
       </Label>
       {setEndpointName && (
         <Label>
           <div className="edit-flow-arrangement mt-3">
-            <span className="font-medium">Endpoint Name</span>
+            <span className="font-medium">Endpoint 名称</span>
             {!validEndpointName && (
               <span className="edit-flow-span">
-                Invalid endpoint name. Use only letters, numbers, hyphens, and
-                underscores ({maxLength} characters max).
+                Endpoint名称无效。仅使用字母、数字、连字符和下划线（{maxLength} 个字符）。
               </span>
             )}
           </div>
@@ -134,7 +133,7 @@ export const EditFlowSettings: React.FC<InputProps> = ({
             type="text"
             name="endpoint_name"
             value={endpointName ?? ""}
-            placeholder="An alternative name to run the endpoint"
+            placeholder="自定义 Endpoint 名称"
             maxLength={maxLength}
             id="endpoint_name"
             onDoubleClickCapture={(event) => {

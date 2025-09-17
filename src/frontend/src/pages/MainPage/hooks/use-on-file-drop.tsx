@@ -13,6 +13,7 @@ const useFileDrop = (type?: string) => {
       const files: File[] = Array.from(e.dataTransfer.files);
       uploadFlow({
         files,
+        refreshIds: false,
         isComponent:
           type === "component" ? true : type === "flow" ? false : undefined,
       })

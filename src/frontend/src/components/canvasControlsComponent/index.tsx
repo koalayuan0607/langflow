@@ -82,7 +82,7 @@ const CanvasControls = ({ children }) => {
       {/* Zoom In */}
       <CustomControlButton
         iconName="ZoomIn"
-        tooltipText="Zoom In"
+        tooltipText="放大"
         onClick={zoomIn}
         disabled={maxZoomReached}
         testId="zoom_in"
@@ -90,7 +90,7 @@ const CanvasControls = ({ children }) => {
       {/* Zoom Out */}
       <CustomControlButton
         iconName="ZoomOut"
-        tooltipText="Zoom Out"
+        tooltipText="缩小"
         onClick={zoomOut}
         disabled={minZoomReached}
         testId="zoom_out"
@@ -98,14 +98,14 @@ const CanvasControls = ({ children }) => {
       {/* Zoom To Fit */}
       <CustomControlButton
         iconName="maximize"
-        tooltipText="Fit To Zoom"
+        tooltipText="适应缩放"
         onClick={fitView}
         testId="fit_view"
       />
       {/* Lock/Unlock */}
       <CustomControlButton
         iconName={isInteractive ? "LockOpen" : "Lock"}
-        tooltipText={isInteractive ? "Lock" : "Unlock"}
+        tooltipText={isInteractive ? "锁定" : "解锁"}
         onClick={onToggleInteractivity}
         backgroundClasses={isInteractive ? "" : "bg-destructive"}
         iconClasses={

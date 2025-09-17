@@ -25,34 +25,34 @@ export default function TemplatesModal({
   // Define categories and their items
   const categories: Category[] = [
     {
-      title: "Templates",
+      title: "模板库",
       items: [
-        { title: "Get started", icon: "SquarePlay", id: "get-started" },
-        { title: "All templates", icon: "LayoutPanelTop", id: "all-templates" },
+        { title: "快速入门", icon: "SquarePlay", id: "get-started" },
+        { title: "所有模板", icon: "LayoutPanelTop", id: "all-templates" },
       ],
     },
     {
-      title: "Use Cases",
+      title: "使用场景",
       items: [
-        { title: "Assistants", icon: "BotMessageSquare", id: "assistants" },
-        { title: "Classification", icon: "Tags", id: "classification" },
-        { title: "Coding", icon: "TerminalIcon", id: "coding" },
+        { title: "智能助手", icon: "BotMessageSquare", id: "assistants" },
+        { title: "分类任务", icon: "Tags", id: "classification" },
+        { title: "代码编程", icon: "TerminalIcon", id: "coding" },
         {
-          title: "Content Generation",
+          title: "内容生成",
           icon: "Newspaper",
           id: "content-generation",
         },
-        { title: "Q&A", icon: "Database", id: "q-a" },
-        // { title: "Summarization", icon: "Bot", id: "summarization" },
-        // { title: "Web Scraping", icon: "CodeXml", id: "web-scraping" },
+        { title: "问答系统", icon: "Database", id: "q-a" },
+        // { title: "文本摘要", icon: "Bot", id: "summarization" },
+        // { title: "网页抓取", icon: "CodeXml", id: "web-scraping" },
       ],
     },
     {
-      title: "Methodology",
+      title: "技术方法",
       items: [
-        { title: "Prompting", icon: "MessagesSquare", id: "chatbots" },
-        { title: "RAG", icon: "Database", id: "rag" },
-        { title: "Agents", icon: "Bot", id: "agents" },
+        { title: "提示工程", icon: "MessagesSquare", id: "chatbots" },
+        { title: "检索增强", icon: "Database", id: "rag" },
+        { title: "智能代理", icon: "Bot", id: "agents" },
       ],
     },
   ];
@@ -79,9 +79,9 @@ export default function TemplatesModal({
               <BaseModal.Footer>
                 <div className="flex w-full flex-col justify-between gap-4 pb-4 sm:flex-row sm:items-center">
                   <div className="flex flex-col items-start justify-center">
-                    <div className="font-semibold">Start from scratch</div>
+                    <div className="font-semibold">从零开始</div>
                     <div className="text-sm text-muted-foreground">
-                      Begin with a fresh flow to build from scratch.
+                      创建一个全新的空白智能体
                     </div>
                   </div>
                   <Button
@@ -101,7 +101,7 @@ export default function TemplatesModal({
                       name="Plus"
                       className="h-4 w-4 shrink-0"
                     />
-                    Blank Flow
+                    创建空白智能体
                   </Button>
                 </div>
               </BaseModal.Footer>

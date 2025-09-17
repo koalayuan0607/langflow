@@ -8,6 +8,11 @@ export interface AuthStoreType {
   autoLogin: boolean | null;
   apiKey: string | null;
   authenticationErrorCount: number;
+  thirdPartyToken: string | null;
+  iframeData: {
+    token: string;
+    isShowHeader: boolean;
+  };
 
   setIsAdmin: (isAdmin: boolean) => void;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -16,7 +21,13 @@ export interface AuthStoreType {
   setAutoLogin: (autoLogin: boolean) => void;
   setApiKey: (apiKey: string | null) => void;
   setAuthenticationErrorCount: (authenticationErrorCount: number) => void;
+  setThirdPartyToken: (thirdPartyToken: string | null) => void;
+  setInitParams: () => void;
   logout: () => Promise<void>;
+  setIframeData: (iframeData: {
+    token: string;
+    isShowHeader: boolean;
+  }) => void;
   // setUserData: (userData: Users | null) => void;
   // setIsAdmin: (isAdmin: boolean) => void;
   // setApiKey: (apiKey: string | null) => void;

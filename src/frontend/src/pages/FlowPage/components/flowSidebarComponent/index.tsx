@@ -32,7 +32,7 @@ import { checkChatInput } from "@/utils/reactflowUtils";
 import {
   nodeColors,
   SIDEBAR_BUNDLES,
-  SIDEBAR_CATEGORIES,
+  SIDEBAR_CATEGORIES as DEFAULT_CATEGORIES,
 } from "@/utils/styleUtils";
 import { cloneDeep } from "lodash";
 import useAlertStore from "../../../../stores/alertStore";
@@ -54,7 +54,9 @@ import { filteredDataFn } from "./helpers/filtered-data";
 import { normalizeString } from "./helpers/normalize-string";
 import { traditionalSearchMetadata } from "./helpers/traditional-search-metadata";
 
-const CATEGORIES = SIDEBAR_CATEGORIES;
+import { useGetCategories } from "@/controllers/API/queries/flows/use-get-categories";
+
+// const CATEGORIES = SIDEBAR_CATEGORIES;
 const BUNDLES = SIDEBAR_BUNDLES;
 
 export function FlowSidebarComponent() {
@@ -68,6 +70,12 @@ export function FlowSidebarComponent() {
   const hasStore = useStoreStore((state) => state.hasStore);
   const filterType = useFlowStore((state) => state.filterType);
 
+  const { data: categoryGroups = DEFAULT_CATEGORIES } = useGetCategories();
+
+  const categories = useMemo(() => {
+    return categoryGroups.flatMap((group) => group.components);
+  }, [categoryGroups]);
+
   const setErrorData = useAlertStore((state) => state.setErrorData);
   const [dataFilter, setFilterData] = useState(data);
   const [search, setSearch] = useState("");
@@ -80,6 +88,15 @@ export function FlowSidebarComponent() {
   const [showConfig, setShowConfig] = useState(false);
   const [showBeta, setShowBeta] = useState(true);
   const [showLegacy, setShowLegacy] = useState(false);
+
+  const showCategory = useMemo(() => {
+    return categoryGroups.filter((group) =>
+      group.components.length &&
+      group.components.some((item) =>
+        dataFilter[item.name] && Object.keys(dataFilter[item.name]).length > 0
+      )
+    );
+  }, [categoryGroups, dataFilter]);
 
   const { setOpen } = useSidebar();
 
@@ -272,7 +289,7 @@ export function FlowSidebarComponent() {
       dataFilter[item.name] && Object.keys(dataFilter[item.name]).length > 0,
   );
 
-  const hasCategoryItems = CATEGORIES.some(
+  const hasCategoryItems = categories.some(
     (item) =>
       dataFilter[item.name] && Object.keys(dataFilter[item.name]).length > 0,
   );
@@ -298,10 +315,10 @@ export function FlowSidebarComponent() {
             <SidebarTrigger className="text-muted-foreground">
               <ForwardedIconComponent name="PanelLeftClose" />
             </SidebarTrigger>
-            <h3 className="flex-1 text-sm font-semibold">Components</h3>
+            <h3 className="flex-1 text-sm font-semibold">元件面板</h3>
             <DisclosureTrigger>
               <div>
-                <ShadTooltip content="Component settings" styleClasses="z-50">
+                <ShadTooltip content="元件设置" styleClasses="z-50">
                   <Button
                     variant={showConfig ? "ghostActive" : "ghost"}
                     size="iconMd"
@@ -343,7 +360,7 @@ export function FlowSidebarComponent() {
           />
           {!isInputFocused && search === "" && (
             <div className="pointer-events-none absolute inset-y-0 left-8 top-1/2 flex w-4/5 -translate-y-1/2 items-center justify-between gap-2 text-sm text-muted-foreground">
-              Search{" "}
+              搜索{" "}
               <span>
                 <ShortcutDisplay sidebar shortcut="/" />
               </span>
@@ -375,70 +392,77 @@ export function FlowSidebarComponent() {
                             <SidebarMenuSkeleton />
                           </SidebarMenuItem>
                         ))
-                      : CATEGORIES.toSorted(
-                          (a, b) =>
-                            (search !== ""
-                              ? sortedCategories
-                              : CATEGORIES
-                            ).findIndex((value) => value === a.name) -
-                            (search !== ""
-                              ? sortedCategories
-                              : CATEGORIES
-                            ).findIndex((value) => value === b.name),
-                        ).map(
-                          (item) =>
-                            dataFilter[item.name] &&
-                            Object.keys(dataFilter[item.name]).length > 0 && (
-                              <Disclosure
-                                key={item.name}
-                                open={openCategories.includes(item.name)}
-                                onOpenChange={(isOpen) => {
-                                  setOpenCategories((prev) =>
-                                    isOpen
-                                      ? [...prev, item.name]
-                                      : prev.filter((cat) => cat !== item.name),
-                                  );
-                                }}
-                              >
-                                <SidebarMenuItem>
-                                  <DisclosureTrigger className="group/collapsible">
-                                    <SidebarMenuButton asChild>
-                                      <div
-                                        data-testid={`disclosure-${item.display_name.toLocaleLowerCase()}`}
-                                        tabIndex={0}
-                                        onKeyDown={(e) =>
-                                          handleKeyDown(e, item.name)
-                                        }
-                                        className="flex cursor-pointer items-center gap-2"
-                                      >
-                                        <ForwardedIconComponent
-                                          name={item.icon}
-                                          className="h-4 w-4 group-aria-expanded/collapsible:text-accent-pink-foreground"
-                                        />
-                                        <span className="flex-1 group-aria-expanded/collapsible:font-semibold">
-                                          {item.display_name}
-                                        </span>
-                                        <ForwardedIconComponent
-                                          name="ChevronRight"
-                                          className="-mr-1 h-4 w-4 text-muted-foreground transition-all group-aria-expanded/collapsible:rotate-90"
-                                        />
-                                      </div>
-                                    </SidebarMenuButton>
-                                  </DisclosureTrigger>
-                                  <DisclosureContent>
-                                    <SidebarItemsList
-                                      item={item}
-                                      dataFilter={dataFilter}
-                                      nodeColors={nodeColors}
-                                      chatInputAdded={chatInputAdded}
-                                      onDragStart={onDragStart}
-                                      sensitiveSort={sensitiveSort}
-                                    />
-                                  </DisclosureContent>
-                                </SidebarMenuItem>
-                              </Disclosure>
-                            ),
-                        )}
+                      : showCategory.map((group, gIdx) => {
+                          return group.components.length && (
+                            <div key={group.name}>
+                              {group.display_name && <div className={`px-2 mb-2 text-sm font-semibold ${gIdx ? 'mt-3' : ''}`}>{group.display_name}</div>}
+                              {group.components.toSorted(
+                                (a, b) =>
+                                  (search !== ""
+                                    ? sortedCategories
+                                    : categories
+                                  ).findIndex((value) => value === a.name) -
+                                  (search !== ""
+                                    ? sortedCategories
+                                    : categories
+                                  ).findIndex((value) => value === b.name),
+                              ).map(
+                                (item) =>
+                                  dataFilter[item.name] &&
+                                  Object.keys(dataFilter[item.name]).length > 0 && (
+                                    <Disclosure
+                                      key={item.name}
+                                      open={openCategories.includes(item.name)}
+                                      onOpenChange={(isOpen) => {
+                                        setOpenCategories((prev) =>
+                                          isOpen
+                                            ? [...prev, item.name]
+                                            : prev.filter((cat) => cat !== item.name),
+                                        );
+                                      }}
+                                    >
+                                      <SidebarMenuItem>
+                                        <DisclosureTrigger className="group/collapsible">
+                                          <SidebarMenuButton asChild>
+                                            <div
+                                              data-testid={`disclosure-${item.display_name.toLocaleLowerCase()}`}
+                                              tabIndex={0}
+                                              onKeyDown={(e) =>
+                                                handleKeyDown(e, item.name)
+                                              }
+                                              className="flex cursor-pointer items-center gap-2"
+                                            >
+                                              <ForwardedIconComponent
+                                                name={item.icon}
+                                                className="h-4 w-4 group-aria-expanded/collapsible:text-accent-pink-foreground"
+                                              />
+                                              <span className="flex-1 group-aria-expanded/collapsible:font-semibold">
+                                                {item.display_name}
+                                              </span>
+                                              <ForwardedIconComponent
+                                                name="ChevronRight"
+                                                className="-mr-1 h-4 w-4 text-muted-foreground transition-all group-aria-expanded/collapsible:rotate-90"
+                                              />
+                                            </div>
+                                          </SidebarMenuButton>
+                                        </DisclosureTrigger>
+                                        <DisclosureContent>
+                                          <SidebarItemsList
+                                            item={item}
+                                            dataFilter={dataFilter}
+                                            nodeColors={nodeColors}
+                                            chatInputAdded={chatInputAdded}
+                                            onDragStart={onDragStart}
+                                            sensitiveSort={sensitiveSort}
+                                          />
+                                        </DisclosureContent>
+                                      </SidebarMenuItem>
+                                    </Disclosure>
+                                  ),
+                              )}
+                            </div>
+                          )
+                      })}
                   </SidebarMenu>
                 </SidebarGroupContent>
               </SidebarGroup>

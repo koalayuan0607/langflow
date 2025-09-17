@@ -30,6 +30,7 @@ import useFlowStore from "@/stores/flowStore";
 import { useShortcutsStore } from "@/stores/shortcuts";
 import { cn } from "@/utils/utils";
 import { useQueryClient } from "@tanstack/react-query";
+import useAuthStore from "@/stores/authStore";
 
 export const MenuBar = ({}: {}): JSX.Element => {
   const shortcuts = useShortcutsStore((state) => state.shortcuts);
@@ -54,6 +55,8 @@ export const MenuBar = ({}: {}): JSX.Element => {
   const setCurrentFlow = useFlowsManagerStore((state) => state.setCurrentFlow);
   const stopBuilding = useFlowStore((state) => state.stopBuilding);
   const { data: folders } = useGetFoldersQuery();
+
+  const { iframeData } = useAuthStore();
 
   const currentFolder = useMemo(
     () => folders?.find((f) => f.id === currentFlow?.folder_id),
@@ -88,15 +91,15 @@ export const MenuBar = ({}: {}): JSX.Element => {
     }
     // return savedText;
     return (
-      <div className="shrink-0 text-xs font-medium text-accent-emerald-foreground">
-        Saved
+      <div className="shrink-0 text-xs font-medium text-primary">
+        已保存
       </div>
     );
   }
 
   const handleSave = () => {
     saveFlow().then(() => {
-      setSuccessData({ title: "Saved successfully" });
+      setSuccessData({ title: "保存成功" });
     });
   };
 
@@ -106,10 +109,10 @@ export const MenuBar = ({}: {}): JSX.Element => {
   return currentFlow && onFlowPage ? (
     <div className="flex items-center justify-center gap-2 truncate">
       <div className="header-menu-bar hidden justify-end truncate md:flex">
-        {currentFolder?.name && (
+        {currentFolder?.name && iframeData.isShowHeader && (
           <div className="hidden truncate md:flex">
             <div
-              className="cursor-pointer truncate text-muted-foreground hover:text-primary"
+              className="cursor-pointer truncate hover:text-primary"
               onClick={() => {
                 navigate(
                   currentFolder?.id
@@ -123,9 +126,11 @@ export const MenuBar = ({}: {}): JSX.Element => {
           </div>
         )}
       </div>
-      <div className="hidden w-fit shrink-0 select-none font-normal text-muted-foreground md:flex">
-        /
-      </div>
+      {iframeData.isShowHeader && (
+        <div className="hidden w-fit shrink-0 select-none font-normal text-muted-foreground md:flex">
+          /
+        </div>
+      )}
 
       <div className="w-fit overflow-hidden truncate text-sm sm:whitespace-normal lg:flex-shrink-0">
         <DropdownMenu>
@@ -149,7 +154,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-44 bg-white dark:bg-background">
-            <DropdownMenuLabel>Options</DropdownMenuLabel>
+            <DropdownMenuLabel>操作</DropdownMenuLabel>
             <DropdownMenuItem
               onClick={() => {
                 handleAddFlow();
@@ -157,7 +162,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
               className="cursor-pointer"
             >
               <IconComponent name="Plus" className="header-menu-options" />
-              New
+              新增智能体
             </DropdownMenuItem>
 
             <DropdownMenuItem
@@ -167,12 +172,12 @@ export const MenuBar = ({}: {}): JSX.Element => {
               className="cursor-pointer"
             >
               <IconComponent name="Settings2" className="header-menu-options" />
-              Flow Settings
+              智能体设置
             </DropdownMenuItem>
             {!autoSaving && (
               <DropdownMenuItem onClick={handleSave} className="cursor-pointer">
                 <ToolbarSelectItem
-                  value="Save"
+                  value="保存"
                   icon="Save"
                   dataTestId=""
                   shortcut={
@@ -193,7 +198,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 name="ScrollText"
                 className="header-menu-options"
               />
-              Logs
+              日志
             </DropdownMenuItem>
             <DropdownMenuItem
               className="cursor-pointer"
@@ -201,19 +206,19 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 uploadFlow({ position: { x: 300, y: 100 } })
                   .then(() => {
                     setSuccessData({
-                      title: "Uploaded successfully",
+                      title: "上传成功",
                     });
                   })
                   .catch((error) => {
                     setErrorData({
-                      title: UPLOAD_ERROR_ALERT,
+                      title: "上传失败",
                       list: [(error as Error).message],
                     });
                   });
               }}
             >
               <IconComponent name="FileUp" className="header-menu-options" />
-              Import
+              导入
             </DropdownMenuItem>
             <ExportModal>
               <div className="header-menubar-item">
@@ -221,7 +226,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                   name="FileDown"
                   className="header-menu-options"
                 />
-                Export
+                导出
               </div>
             </ExportModal>
             <DropdownMenuItem
@@ -231,7 +236,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
               className="cursor-pointer"
             >
               <ToolbarSelectItem
-                value="Undo"
+                value="撤销"
                 icon="Undo"
                 dataTestId=""
                 shortcut={
@@ -247,7 +252,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
               className="cursor-pointer"
             >
               <ToolbarSelectItem
-                value="Redo"
+                value="重做"
                 icon="Redo"
                 dataTestId=""
                 shortcut={
@@ -266,7 +271,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
                 name="RefreshCcw"
                 className="header-menu-options"
               />
-              Refresh All
+              刷新所有
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -276,7 +281,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
         ></FlowSettingsModal>
         <FlowLogsModal open={openLogs} setOpen={setOpenLogs}></FlowLogsModal>
       </div>
-      <div className={"hidden w-28 shrink-0 items-center sm:flex"}>
+      <div className={"hidden max-w-28 shrink-0 items-center sm:flex"}>
         {!autoSaving && (
           <Button
             variant="primary"
@@ -340,7 +345,7 @@ export const MenuBar = ({}: {}): JSX.Element => {
               }
             >
               <IconComponent name="Square" className="h-4 w-4" />
-              <span>Stop</span>
+              <span>停止</span>
             </button>
           </div>
         </ShadTooltip>

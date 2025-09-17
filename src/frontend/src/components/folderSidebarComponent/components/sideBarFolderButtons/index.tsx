@@ -93,7 +93,7 @@ const SideBarFoldersButtonsComponent = ({
 
       getObjectsFromFilelist<any>(files).then((objects) => {
         if (objects.every((flow) => flow.data?.nodes)) {
-          uploadFlow({ files }).then(() => {
+          uploadFlow({ files, refreshIds: false }).then(() => {
             setSuccessData({
               title: "Uploaded successfully",
             });
@@ -173,14 +173,14 @@ const SideBarFoldersButtonsComponent = ({
     mutateAddFolder(
       {
         data: {
-          name: "New Folder",
+          name: "新空间",
           parent_id: null,
           description: "",
         },
       },
       {
         onSuccess: (folder) => {
-          track("Create New Folder");
+          track("创建新空间");
           handleChangeFolder!(folder.id);
         },
       },
@@ -279,7 +279,7 @@ const SideBarFoldersButtonsComponent = ({
         <IconComponent name="PanelLeftClose" className="h-4 w-4" />
       </SidebarTrigger>
 
-      <div className="flex-1 text-sm font-semibold">Folders</div>
+      <div className="flex-1 text-md font-semibold">空间</div>
       <div className="flex items-center gap-1">
         <UploadFolderButton
           onClick={handleUploadFlowsToFolder}
@@ -295,7 +295,7 @@ const SideBarFoldersButtonsComponent = ({
   );
 
   const AddFolderButton = ({ onClick, disabled, loading }) => (
-    <ShadTooltip content="Create new folder" styleClasses="z-50">
+    <ShadTooltip content="创建新空间" styleClasses="z-50">
       <Button
         variant="ghost"
         size="icon"
@@ -311,7 +311,7 @@ const SideBarFoldersButtonsComponent = ({
   );
 
   const UploadFolderButton = ({ onClick, disabled }) => (
-    <ShadTooltip content="Upload a flow" styleClasses="z-50">
+    <ShadTooltip content="上传智能体" styleClasses="z-50">
       <Button
         variant="ghost"
         size="icon"
@@ -328,7 +328,7 @@ const SideBarFoldersButtonsComponent = ({
   const FolderSelectItem = ({ name, iconName }) => (
     <div
       className={cn(
-        name === "Delete" ? "text-destructive" : "",
+        name === "Delete" || name === "删除" ? "text-destructive" : "",
         "flex items-center font-medium",
       )}
     >
@@ -429,7 +429,7 @@ const SideBarFoldersButtonsComponent = ({
                     (folder) => folder.name === item.name,
                   )[0];
                   return (
-                    <SidebarMenuItem>
+                    <SidebarMenuItem key={item.id}>
                       <SidebarMenuButton
                         size="md"
                         onDragOver={(e) => dragOver(e, item.id!)}
@@ -495,7 +495,7 @@ const SideBarFoldersButtonsComponent = ({
                             value=""
                           >
                             <ShadTooltip
-                              content="Options"
+                              content="更多操作"
                               side="right"
                               styleClasses="z-50"
                             >
@@ -524,7 +524,7 @@ const SideBarFoldersButtonsComponent = ({
                                   data-testid="btn-rename-folder"
                                 >
                                   <FolderSelectItem
-                                    name="Rename"
+                                    name="重命名"
                                     iconName="SquarePen"
                                   />
                                 </SelectItem>
@@ -534,7 +534,7 @@ const SideBarFoldersButtonsComponent = ({
                                 data-testid="btn-download-folder"
                               >
                                 <FolderSelectItem
-                                  name="Download Content"
+                                  name="下载"
                                   iconName="Download"
                                 />
                               </SelectItem>
@@ -544,7 +544,7 @@ const SideBarFoldersButtonsComponent = ({
                                   data-testid="btn-delete-folder"
                                 >
                                   <FolderSelectItem
-                                    name="Delete"
+                                    name="删除"
                                     iconName="Trash2"
                                   />
                                 </SelectItem>

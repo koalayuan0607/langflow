@@ -46,6 +46,12 @@ function ApiInterceptor() {
           config.headers["Authorization"] = `Bearer ${accessToken}`;
         }
 
+        // 添加jwtoken header
+        const thirdPartyToken = sessionStorage.getItem('thirdPartyToken');
+        if (thirdPartyToken) {
+          config.headers["jwtoken"] = thirdPartyToken;
+        }
+
         for (const [key, value] of Object.entries(customHeaders)) {
           config.headers[key] = value;
         }
@@ -130,6 +136,12 @@ function ApiInterceptor() {
         const accessToken = cookies.get(LANGFLOW_ACCESS_TOKEN);
         if (accessToken && !isAuthorizedURL(config?.url)) {
           config.headers["Authorization"] = `Bearer ${accessToken}`;
+        }
+
+        // 添加jwtoken header
+        const thirdPartyToken = sessionStorage.getItem('thirdPartyToken');
+        if (thirdPartyToken) {
+          config.headers["jwtoken"] = thirdPartyToken;
         }
 
         const currentOrigin = window.location.origin;
@@ -252,6 +264,13 @@ async function performStreamingRequest({
     // this flag is fundamental to ensure server stops tasks when client disconnects
     Connection: "close",
   };
+
+  // 添加jwtoken header
+  const thirdPartyToken = sessionStorage.getItem('thirdPartyToken');
+  if (thirdPartyToken) {
+    headers["jwtoken"] = thirdPartyToken;
+  }
+
   const controller = new AbortController();
   useFlowStore.getState().setBuildController(controller);
   const params = {

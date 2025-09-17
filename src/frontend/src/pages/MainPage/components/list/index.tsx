@@ -83,13 +83,13 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
     deleteFlow({ id: [flowData.id] })
       .then(() => {
         setSuccessData({
-          title: "Selected items deleted successfully",
+          title: "已成功删除",
         });
       })
       .catch(() => {
         setErrorData({
-          title: "Error deleting items",
-          list: ["Please try again"],
+          title: "删除失败",
+          list: ["请重试"],
         });
       });
   };
@@ -142,10 +142,10 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
                 <span className="truncate">{flowData.name}</span>
               </div>
               <div className="item-baseline flex text-xs text-muted-foreground">
-                Edited {timeElapsed(flowData.updated_at)} ago
+                修改于 {timeElapsed(flowData.updated_at)} 前
               </div>
             </div>
-            <div className="overflow-hidden text-sm text-primary">
+            <div className="overflow-hidden text-sm">
               <span className="block max-w-[110ch] truncate">
                 {flowData.description}
               </span>
@@ -187,7 +187,7 @@ const ListComponent = ({ flowData }: { flowData: FlowType }) => {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="w-[185px]"
+              className="w-[150px]"
               sideOffset={5}
               side="bottom"
             >

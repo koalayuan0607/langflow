@@ -158,7 +158,7 @@ export default function FlowToolbar(): JSX.Element {
                 </div>
               </>
             )}
-            {ENABLE_LANGFLOW_STORE && (
+            {/* {ENABLE_LANGFLOW_STORE && (
               <div className="flex items-center gap-2">
                 <div
                   className={`side-bar-button ${
@@ -170,7 +170,7 @@ export default function FlowToolbar(): JSX.Element {
                   {ModalMemo}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </Panel>

@@ -5,6 +5,7 @@ import { IMGViewErrorMSG, IMGViewErrorTitle } from "../../constants/constants";
 import useAlertStore from "../../stores/alertStore";
 import ForwardedIconComponent from "../genericIconComponent";
 import { Separator } from "../ui/separator";
+import { buildUrlWithJwtoken } from "@/utils/api-utils";
 
 export default function ImageViewer({ image }: { image: string }) {
   const viewerRef = useRef(null);
@@ -66,7 +67,7 @@ export default function ImageViewer({ image }: { image: string }) {
   }, [image]);
 
   function download() {
-    const imageUrl = image;
+    const imageUrl = buildUrlWithJwtoken(image);
     // Fetch the image data
     fetch(imageUrl)
       .then((response) => response.blob())

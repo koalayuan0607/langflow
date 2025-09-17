@@ -42,7 +42,7 @@ export default function CollectionPage(): JSX.Element {
       {
         onSuccess: () => {
           setSuccessData({
-            title: "Folder deleted successfully.",
+            title: "空间删除成功！",
           });
           navigate("/all");
         },

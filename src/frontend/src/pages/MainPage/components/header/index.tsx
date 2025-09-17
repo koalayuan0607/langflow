@@ -81,12 +81,13 @@ const HeaderComponent = ({
                 onClick={() => setFlowType(type as "flows" | "components")}
                 className={`border-b ${
                   flowType === type
-                    ? "border-b-2 border-foreground text-foreground"
+                    ? "border-b-2 border-primary text-foreground"
                     : "border-border text-muted-foreground hover:text-foreground"
                 } px-3 pb-2 text-sm`}
               >
-                <div className={flowType === type ? "-mb-px" : ""}>
-                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                <div className={flowType === type ? "-mb-px whitespace-nowrap" : "whitespace-nowrap"}>
+                  {/* {type.charAt(0).toUpperCase() + type.slice(1)} */}
+                  {type === "flows" ? "智能体" : type === "components" ? "元件" : ""}
                 </div>
               </Button>
             ))}
@@ -98,7 +99,7 @@ const HeaderComponent = ({
                 icon="Search"
                 data-testid="search-store-input"
                 type="text"
-                placeholder={`Search ${flowType}...`}
+                placeholder={`搜索${flowType === "flows" ? "智能体" : "元件"}...`}
                 className="mr-2"
                 value={debouncedSearch}
                 onChange={handleSearch}
@@ -148,7 +149,7 @@ const HeaderComponent = ({
                     className="h-4 w-4"
                   />
                   <span className="hidden whitespace-nowrap font-semibold md:inline">
-                    New Flow
+                    新增智能体
                   </span>
                 </Button>
               </ShadTooltip>

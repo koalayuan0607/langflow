@@ -91,7 +91,7 @@ export default function FlowSettingsModal({
       onSubmit={handleClick}
     >
       <BaseModal.Header description={SETTINGS_DIALOG_SUBTITLE}>
-        <span className="pr-2">Settings</span>
+        <span className="pr-2">智能体设置</span>
         <IconComponent name="Settings2" className="mr-2 h-4 w-4" />
       </BaseModal.Header>
       <BaseModal.Content>
@@ -108,7 +108,7 @@ export default function FlowSettingsModal({
 
       <BaseModal.Footer
         submit={{
-          label: "Save",
+          label: "保存",
           dataTestId: "save-flow-settings",
           disabled: disableSave,
           loading: isSaving,

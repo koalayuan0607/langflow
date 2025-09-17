@@ -104,7 +104,7 @@ export const EXPORT_DIALOG_SUBTITLE = "Export flow as JSON file.";
  * @constant
  */
 export const SETTINGS_DIALOG_SUBTITLE =
-  "Customize workspace settings and preferences.";
+  "自定义智能体工作区的设置和偏好";
 
 /**
  * The base text for subtitle of Flow Logs (Menubar)

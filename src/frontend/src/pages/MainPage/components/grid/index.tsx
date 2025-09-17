@@ -86,13 +86,13 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
     deleteFlow({ id: [flowData.id] })
       .then(() => {
         setSuccessData({
-          title: "Selected items deleted successfully",
+          title: "已成功删除",
         });
       })
       .catch(() => {
         setErrorData({
-          title: "Error deleting items",
-          list: ["Please try again"],
+          title: "删除失败",
+          list: ["请重试"],
         });
       });
   };
@@ -132,7 +132,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
                 {flowData.name}
               </div>
               <div className="truncate text-xs text-muted-foreground">
-                Edited {timeElapsed(flowData.updated_at)} ago
+                修改于 {timeElapsed(flowData.updated_at)} 前
               </div>
             </div>
             <DropdownMenu>
@@ -151,7 +151,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
-                className="w-[185px]"
+                className="w-[150px]"
                 sideOffset={5}
                 side="bottom"
               >
@@ -164,7 +164,7 @@ const GridComponent = ({ flowData }: { flowData: FlowType }) => {
           </div>
         </div>
 
-        <div className="line-clamp-2 h-full pt-5 text-sm text-primary">
+        <div className="line-clamp-2 h-full pt-5 text-sm">
           {flowData.description}
         </div>
 

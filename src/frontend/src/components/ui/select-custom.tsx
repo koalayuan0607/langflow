@@ -17,10 +17,13 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn("flex w-full items-center justify-between", className)}
+    asChild
     {...props}
   >
-    {children}
-    <SelectPrimitive.Icon asChild></SelectPrimitive.Icon>
+    <div>
+      {children}
+      <SelectPrimitive.Icon asChild></SelectPrimitive.Icon>
+    </div>
   </SelectPrimitive.Trigger>
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;

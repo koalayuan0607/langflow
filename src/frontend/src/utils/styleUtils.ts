@@ -471,28 +471,73 @@ export const nodeColorsName: { [char: string]: string } = {
 };
 
 export const SIDEBAR_CATEGORIES = [
-  { display_name: "Saved", name: "saved_components", icon: "GradientSave" },
-  { display_name: "Inputs", name: "inputs", icon: "Download" },
-  { display_name: "Outputs", name: "outputs", icon: "Upload" },
-  { display_name: "Prompts", name: "prompts", icon: "TerminalSquare" },
-  { display_name: "Data", name: "data", icon: "Database" },
-  { display_name: "Processing", name: "processing", icon: "ListFilter" },
-  { display_name: "Models", name: "models", icon: "BrainCircuit" },
-  { display_name: "Vector Stores", name: "vectorstores", icon: "Layers" },
-  { display_name: "Embeddings", name: "embeddings", icon: "Binary" },
-  { display_name: "Agents", name: "agents", icon: "Bot" },
-  { display_name: "Chains", name: "chains", icon: "Link" },
-  { display_name: "Loaders", name: "documentloaders", icon: "Paperclip" },
-  { display_name: "Link Extractors", name: "link_extractors", icon: "Link2" },
-  { display_name: "Memories", name: "memories", icon: "Cpu" },
-  { display_name: "Output Parsers", name: "output_parsers", icon: "Compass" },
-  { display_name: "Prototypes", name: "prototypes", icon: "FlaskConical" },
-  { display_name: "Retrievers", name: "retrievers", icon: "FileSearch" },
-  { display_name: "Text Splitters", name: "textsplitters", icon: "Scissors" },
-  { display_name: "Toolkits", name: "toolkits", icon: "Package2" },
-  { display_name: "Tools", name: "tools", icon: "Hammer" },
-  { display_name: "Logic", name: "logic", icon: "ArrowRightLeft" },
-  { display_name: "Helpers", name: "helpers", icon: "Wand2" },
+  {
+    "display_name": "",
+    "name": "saved_components",
+    "components": [
+      { "display_name": "已保存元件", "name": "saved_components", "icon": "GradientSave" }
+    ]
+  },
+  {
+    "display_name": "基础配置",
+    "name": "basic_settings",
+    "components": [
+      { "display_name": "Inputs", "name": "inputs", "icon": "Download" },
+      { "display_name": "Outputs", "name": "outputs", "icon": "Upload" },
+      { "display_name": "Data", "name": "data", "icon": "Database" },
+      { "display_name": "Processing", "name": "processing", "icon": "ListFilter" }
+    ]
+  },
+  {
+    "display_name": "模型与向量",
+    "name": "models_and_vectors",
+    "components": [
+      { "display_name": "Models", "name": "models", "icon": "BrainCircuit" },
+      { "display_name": "Vector Stores", "name": "vectorstores", "icon": "Layers" },
+      { "display_name": "Embeddings", "name": "embeddings", "icon": "Binary" },
+      { "display_name": "Retrievers", "name": "retrievers", "icon": "FileSearch" }
+    ]
+  },
+  {
+    "display_name": "智能交互",
+    "name": "intelligent_interaction",
+    "components": [
+      { "display_name": "Prompts", "name": "prompts", "icon": "TerminalSquare" },
+      { "display_name": "Output Parsers", "name": "output_parsers", "icon": "Compass" },
+      { "display_name": "Memories", "name": "memories", "icon": "Cpu" },
+      { "display_name": "Text Splitters", "name": "textsplitters", "icon": "Scissors" }
+    ]
+  },
+  {
+    "display_name": "智能体",
+    "name": "agents",
+    "components": [
+      { "display_name": "Agents", "name": "agents", "icon": "Bot" },
+      { "display_name": "Demo Agent", "name": "demo_agent", "icon": "Bot" },
+      { "display_name": "Report Agent", "name": "report_agent", "icon": "Bot" },
+      { "display_name": "Classify Judge", "name": "classify_judge", "icon": "Bot" }
+    ]
+  },
+  {
+    "display_name": "工具集成",
+    "name": "tools_integration",
+    "components": [
+      { "display_name": "Tools", "name": "tools", "icon": "Hammer" },
+      { "display_name": "Toolkits", "name": "toolkits", "icon": "Package2" },
+      { "display_name": "Chains", "name": "chains", "icon": "Link" },
+      { "display_name": "Loaders", "name": "documentloaders", "icon": "Paperclip" },
+      { "display_name": "Link Extractors", "name": "link_extractors", "icon": "Link2" }
+    ]
+  },
+  {
+    "display_name": "扩展功能",
+    "name": "extensions",
+    "components": [
+      { "display_name": "Logic", "name": "logic", "icon": "ArrowRightLeft" },
+      { "display_name": "Helpers", "name": "helpers", "icon": "Wand2" },
+      { "display_name": "Prototypes", "name": "prototypes", "icon": "FlaskConical" }
+    ]
+  }
 ];
 
 export const SIDEBAR_BUNDLES = [

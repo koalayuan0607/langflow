@@ -7,7 +7,7 @@ const PlaygroundButton = ({ hasIO, open, setOpen, canvasOpen }) => {
     <ForwardedIconComponent name="Play" className="h-4 w-4 transition-all" />
   );
 
-  const ButtonLabel = () => <span className="hidden md:block">Playground</span>;
+  const ButtonLabel = () => <span className="hidden md:block">运行</span>;
 
   const ActiveButton = () => (
     <div

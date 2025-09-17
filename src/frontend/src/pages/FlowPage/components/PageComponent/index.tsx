@@ -4,9 +4,12 @@ import CanvasControls, {
   CustomControlButton,
 } from "@/components/canvasControlsComponent";
 import FlowToolbar from "@/components/flowToolbarComponent";
+import FlowMenu from "@/components/appHeaderComponent/components/FlowMenu";
+
 import ForwardedIconComponent from "@/components/genericIconComponent";
 import LoadingComponent from "@/components/loadingComponent";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+
 import {
   COLOR_OPTIONS,
   NOTE_NODE_MIN_HEIGHT,
@@ -53,6 +56,8 @@ import { useShortcutsStore } from "../../../../stores/shortcuts";
 import { useTypesStore } from "../../../../stores/typesStore";
 import { APIClassType } from "../../../../types/api";
 import { NodeType } from "../../../../types/flow";
+import useAuthStore from "@/stores/authStore";
+
 import {
   generateFlow,
   generateNodeFromFlow,
@@ -84,6 +89,7 @@ export default function Page({ view }: { view?: boolean }): JSX.Element {
   const templates = useTypesStore((state) => state.templates);
   const setFilterEdge = useFlowStore((state) => state.setFilterEdge);
   const reactFlowWrapper = useRef<HTMLDivElement>(null);
+  const { iframeData } = useAuthStore();
 
   const reactFlowInstance = useFlowStore((state) => state.reactFlowInstance);
   const setReactFlowInstance = useFlowStore(
@@ -562,7 +568,7 @@ export default function Page({ view }: { view?: boolean }): JSX.Element {
                 <CanvasControls>
                   <CustomControlButton
                     iconName="sticky-note"
-                    tooltipText="Add Note"
+                    tooltipText="添加笔记"
                     onClick={() => {
                       setIsAddingNote(true);
                       const shadowBox = document.getElementById("shadow-box");
@@ -576,6 +582,14 @@ export default function Page({ view }: { view?: boolean }): JSX.Element {
                     testId="add_note"
                   />
                 </CanvasControls>
+                {!iframeData.isShowHeader && (
+                  <Panel
+                    className="!m-2 px-4 py-2 !rounded-md !border !border-secondary-hover !bg-background !shadow"
+                    position="top-center"
+                  >
+                    <FlowMenu />
+                  </Panel>
+                )}
                 <FlowToolbar />
               </>
             )}
@@ -591,7 +605,7 @@ export default function Page({ view }: { view?: boolean }): JSX.Element {
                   name="PanelRightClose"
                   className="h-4 w-4"
                 />
-                <span className="text-foreground">Components</span>
+                <span className="text-foreground">元件面板</span>
               </SidebarTrigger>
             </Panel>
             {componentsToUpdate.length > 0 && <UpdateAllComponents />}

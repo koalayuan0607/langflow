@@ -13,6 +13,11 @@ const useAuthStore = create<AuthStoreType>((set, get) => ({
   autoLogin: null,
   apiKey: cookies.get("apikey_tkn_lflw"),
   authenticationErrorCount: 0,
+  iframeData: {
+    token: "",
+    isShowHeader: true,
+  },
+  thirdPartyToken: null,
 
   setIsAdmin: (isAdmin) => set({ isAdmin }),
   setIsAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
@@ -23,9 +28,36 @@ const useAuthStore = create<AuthStoreType>((set, get) => ({
   setAuthenticationErrorCount: (authenticationErrorCount) =>
     set({ authenticationErrorCount }),
 
+  setIframeData: (iframeData) => set({ iframeData }),
+
+  setThirdPartyToken: (thirdPartyToken: string | null) => {
+    set({ thirdPartyToken: thirdPartyToken });
+    sessionStorage.setItem('thirdPartyToken', thirdPartyToken || '');
+  },
+
+  setInitParams: () => {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const paramsData = Object.fromEntries(urlSearchParams.entries());
+
+    if (paramsData?.jwtoken) {
+      get().setThirdPartyToken(paramsData.jwtoken);
+
+      // 删除 url 中的 jwtoken
+      const newUrl = new URL(window.location.href);
+      newUrl.searchParams.delete('jwtoken');
+      const newUrlString = newUrl.toString();
+      setTimeout(() => {
+        window.history.replaceState({}, '', newUrlString);
+      }, 1000);
+    }
+  },
+
   logout: async () => {
     get().setIsAuthenticated(false);
     get().setIsAdmin(false);
+
+    // 清除thirdPartyToken
+    sessionStorage.removeItem('thirdPartyToken');
 
     set({
       isAdmin: false,
@@ -34,6 +66,7 @@ const useAuthStore = create<AuthStoreType>((set, get) => ({
       isAuthenticated: false,
       autoLogin: false,
       apiKey: null,
+      thirdPartyToken: null,
     });
   },
 }));

@@ -8,8 +8,8 @@ const useDescriptionModal = (
     const getTypeLabel = (type) => {
       const labels = {
         all: "item",
-        component: "component",
-        flow: "flow",
+        component: "元件",
+        flow: "智能体",
       };
       return labels[type] || "";
     };
@@ -17,8 +17,8 @@ const useDescriptionModal = (
     const getPluralizedLabel = (type) => {
       const labels = {
         all: "items",
-        component: "components",
-        flow: "flows",
+        component: "元件",
+        flow: "智能体",
       };
       return labels[type] || "";
     };

@@ -91,7 +91,7 @@
   "scripts": {
     "dev:docker": "vite --host 0.0.0.0",
     "start": "vite",
-    "build": "vite build",
+    "build": "node --max_old_space_size=8192 ./node_modules/vite/bin/vite.js build",
     "serve": "vite preview",
     "format": "npx prettier --write \"{tests,src}/**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .prettierignore",
     "check-format": "npx prettier --check \"{tests,src}/**/*.{js,jsx,ts,tsx,json,md}\" --ignore-path .prettierignore",
@@ -130,6 +130,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/uuid": "^9.0.8",
+    "@vitejs/plugin-legacy": "^5.0.0",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.5.0",
@@ -143,5 +144,8 @@
     "typescript": "^5.4.5",
     "ua-parser-js": "^1.0.38",
     "vite": "^5.4.7"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }

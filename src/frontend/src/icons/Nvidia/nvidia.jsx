@@ -8,7 +8,7 @@ const NvidiaSVG = (props) => (
     width="351.46px"
     height="258.785px"
     viewBox="35.188 31.512 351.46 258.785"
-    enable-background="new 35.188 31.512 351.46 258.785"
+    enableBackground="new 35.188 31.512 351.46 258.785"
     {...props}
   >
     <title id="title4">

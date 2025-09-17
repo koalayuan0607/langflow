@@ -114,7 +114,7 @@ const Footer: React.FC<{
           <div className="flex items-center gap-3">
             <DialogClose asChild>
               <Button variant="outline" type="button">
-                Cancel
+                取消
               </Button>
             </DialogClose>
             <Button

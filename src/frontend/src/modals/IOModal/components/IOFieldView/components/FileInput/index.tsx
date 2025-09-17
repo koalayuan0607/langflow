@@ -12,6 +12,7 @@ import {
 } from "../../../../../../constants/constants";
 import useFlowsManagerStore from "../../../../../../stores/flowsManagerStore";
 import { IOFileInputProps } from "../../../../../../types/components";
+import { buildUrlWithJwtoken } from "@/utils/api-utils";
 
 export default function IOFileInput({ field, updateValue }: IOFileInputProps) {
   //component to handle file upload from chatIO
@@ -33,7 +34,7 @@ export default function IOFileInput({ field, updateValue }: IOFileInputProps) {
     if (field) {
       const fileName = field.split("/")[1];
       const flowFileId = currentFlowId.toString();
-      setImage(`${BASE_URL_API}files/images/${flowFileId}/${fileName}`);
+      setImage(buildUrlWithJwtoken(`${BASE_URL_API}files/images/${flowFileId}/${fileName}`));
     }
   }, []);
 

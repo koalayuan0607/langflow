@@ -373,8 +373,8 @@ export default function GenericNode({
         <div
           data-testid={`${data.id}-main-node`}
           className={cn(
-            "grid gap-3 truncate text-wrap p-4 leading-5",
-            showNode && "border-b",
+            "generic-node-div-header grid gap-3 truncate text-wrap p-4 leading-5",
+            showNode && "border-b is-show-node",
           )}
         >
           <div

@@ -50,15 +50,17 @@ const useUploadFlow = () => {
     files,
     isComponent,
     position,
+    refreshIds = true,
   }: {
     files?: File[];
     isComponent?: boolean;
     position?: { x: number; y: number };
+    refreshIds?: boolean;
   }): Promise<void> => {
     try {
       let flows = await getFlowsToUpload({ files });
       for (const flow of flows) {
-        await processDataFromFlow(flow);
+        await processDataFromFlow(flow, refreshIds);
       }
 
       if (
@@ -84,7 +86,7 @@ const useUploadFlow = () => {
                 y: currentPosition.y + 50,
               };
             } else {
-              await addFlow({ flow });
+              await addFlow({ flow, refreshIds });
             }
           } else {
             throw new Error("Invalid flow data");

@@ -174,7 +174,7 @@
     @apply flex gap-2;
   }
   .primary-input {
-    @apply form-input block w-full truncate rounded-md border border-border bg-background px-3 text-left text-sm placeholder:text-muted-foreground hover:border-muted-foreground focus:border-foreground focus:placeholder-transparent focus:ring-0 focus:ring-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted disabled:opacity-100 placeholder:disabled:text-muted-foreground;
+    @apply form-input block w-full truncate rounded-md border border-border bg-background px-3 text-left text-sm placeholder:text-muted-foreground hover:border-primary focus:border-primary focus:shadow-[0_0_0_2px_hsl(var(--primary)_/_0.2)] focus:placeholder-transparent focus:ring-0 focus:ring-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted disabled:opacity-100 placeholder:disabled:text-muted-foreground;
   }
 
   .skeleton-card {
@@ -320,6 +320,13 @@
   }
   .generic-node-div {
     @apply flex flex-col justify-center bg-background transition-all;
+  }
+  .generic-node-div-header {
+    background: linear-gradient(hsl(var(--primary) / 0.05) 0%, hsl(var(--background)) 100%);
+    border-radius: 0.7rem;
+    &.is-show-node {
+      border-radius: 0.7rem 0.7rem 0 0;
+    }
   }
   .generic-node-div-title {
     @apply flex flex-1 items-center gap-2 overflow-hidden;
@@ -1202,6 +1209,14 @@
 
   .bg-lucide-icon {
     @apply flex h-8 w-8 items-center justify-center rounded-md bg-muted p-[6px];
+  }
+
+  .bg-primary1 {
+    background-color: hsl(var(--primary) / 0.7)
+  }
+
+  .bg-primary2 {
+    background-color: hsl(var(--primary) / 0.4)
   }
 
   .integration-icon {

@@ -22,7 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             data-testid=""
             type={type}
             className={cn(
-              "nopan nodelete nodrag noflow form-input block w-full appearance-none truncate rounded-md border-border bg-background px-3 pl-9 text-left text-sm placeholder:text-muted-foreground focus:border-black focus:placeholder-transparent focus:ring-zinc-300 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:border-white dark:focus:ring-zinc-800",
+              "nopan nodelete nodrag noflow primary-input appearance-none  pl-9",
               inputClassName,
             )}
             ref={ref}

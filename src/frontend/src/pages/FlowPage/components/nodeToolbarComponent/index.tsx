@@ -396,7 +396,7 @@ export default function NodeToolbarComponent({
               >
                 <IconComponent name="Code" className="h-4 w-4" />
 
-                <span className="text-[13px] font-medium">Code</span>
+                <span className="text-[13px] font-medium">代码</span>
               </Button>
             </ShadTooltip>
           )}
@@ -423,7 +423,7 @@ export default function NodeToolbarComponent({
                 size="node-toolbar"
               >
                 <IconComponent name="SlidersHorizontal" className="h-4 w-4" />
-                <span className="text-[13px] font-medium">Controls</span>
+                <span className="text-[13px] font-medium">控制</span>
               </Button>
             </ShadTooltip>
           )}
@@ -461,7 +461,7 @@ export default function NodeToolbarComponent({
                     frozen ? "animate-wiggle text-ice" : "",
                   )}
                 />
-                <span className="text-[13px] font-medium">Freeze Path</span>
+                <span className="text-[13px] font-medium">冻结路径</span>
               </Button>
             </ShadTooltip>
           )}
@@ -496,7 +496,7 @@ export default function NodeToolbarComponent({
                     toolMode ? "text-primary" : "",
                   )}
                 />
-                <span className="text-[13px] font-medium">Tool Mode</span>
+                <span className="text-[13px] font-medium">工具模式</span>
                 <ToggleShadComponent
                   value={toolMode}
                   editNode={false}
@@ -539,7 +539,7 @@ export default function NodeToolbarComponent({
                     shortcut={
                       shortcuts.find((obj) => obj.name === "Code")?.shortcut!
                     }
-                    value={"Code"}
+                    value={"代码"}
                     icon={"Code"}
                     dataTestId="code-button-modal"
                   />
@@ -552,7 +552,7 @@ export default function NodeToolbarComponent({
                       shortcuts.find((obj) => obj.name === "Advanced Settings")
                         ?.shortcut!
                     }
-                    value={"Controls"}
+                    value={"控制"}
                     icon={"SlidersHorizontal"}
                     dataTestId="advanced-button-modal"
                   />
@@ -564,7 +564,7 @@ export default function NodeToolbarComponent({
                     shortcuts.find((obj) => obj.name === "Save Component")
                       ?.shortcut!
                   }
-                  value={"Save"}
+                  value={"保存"}
                   icon={"SaveAll"}
                   dataTestId="save-button-modal"
                 />
@@ -574,7 +574,7 @@ export default function NodeToolbarComponent({
                   shortcut={
                     shortcuts.find((obj) => obj.name === "Duplicate")?.shortcut!
                   }
-                  value={"Duplicate"}
+                  value={"创建副本"}
                   icon={"Copy"}
                   dataTestId="copy-button-modal"
                 />
@@ -584,7 +584,7 @@ export default function NodeToolbarComponent({
                   shortcut={
                     shortcuts.find((obj) => obj.name === "Copy")?.shortcut!
                   }
-                  value={"Copy"}
+                  value={"复制"}
                   icon={"Clipboard"}
                   dataTestId="copy-button-modal"
                 />
@@ -611,7 +611,7 @@ export default function NodeToolbarComponent({
                       shortcuts.find((obj) => obj.name === "Component Share")
                         ?.shortcut!
                     }
-                    value={"Share"}
+                    value={"分享"}
                     icon={"Share3"}
                     dataTestId="share-button-modal"
                   />
@@ -626,7 +626,7 @@ export default function NodeToolbarComponent({
                   shortcut={
                     shortcuts.find((obj) => obj.name === "Docs")?.shortcut!
                   }
-                  value={"Docs"}
+                  value={"文档"}
                   icon={"FileText"}
                   dataTestId="docs-button-modal"
                 />
@@ -641,7 +641,7 @@ export default function NodeToolbarComponent({
                       shortcuts.find((obj) => obj.name === "Minimize")
                         ?.shortcut!
                     }
-                    value={showNode ? "Minimize" : "Expand"}
+                    value={showNode ? "最小化" : "展开"}
                     icon={showNode ? "Minimize2" : "Maximize2"}
                     dataTestId="minimize-button-modal"
                   />
@@ -662,9 +662,9 @@ export default function NodeToolbarComponent({
               <SelectItem value="freeze">
                 <ToolbarSelectItem
                   shortcut={
-                    shortcuts.find((obj) => obj.name === "Freeze")?.shortcut!
+                    shortcuts.find((obj) => obj.name === "冻结")?.shortcut!
                   }
-                  value={"Freeze"}
+                  value={"冻结"}
                   icon={"Snowflake"}
                   dataTestId="freeze-button"
                   style={`${frozen ? " text-ice" : ""} transition-all`}
@@ -676,7 +676,7 @@ export default function NodeToolbarComponent({
                     shortcuts.find((obj) => obj.name === "Freeze Path")
                       ?.shortcut!
                   }
-                  value={"Freeze Path"}
+                  value={"冻结路径"}
                   icon={"FreezeAll"}
                   dataTestId="freeze-path-button"
                   style={`${frozen ? " text-ice" : ""} transition-all`}
@@ -685,9 +685,9 @@ export default function NodeToolbarComponent({
               <SelectItem value="Download">
                 <ToolbarSelectItem
                   shortcut={
-                    shortcuts.find((obj) => obj.name === "Download")?.shortcut!
+                    shortcuts.find((obj) => obj.name === "下载")?.shortcut!
                   }
-                  value={"Download"}
+                  value={"下载"}
                   icon={"Download"}
                   dataTestId="download-button-modal"
                 />
@@ -698,7 +698,7 @@ export default function NodeToolbarComponent({
                     name="Trash2"
                     className="relative top-0.5 mr-2 h-4 w-4"
                   />{" "}
-                  <span className="">Delete</span>{" "}
+                  <span className="">删除</span>{" "}
                   <span
                     className={`absolute right-2 top-2 flex items-center justify-center rounded-sm px-1 py-[0.2]`}
                   >
@@ -716,7 +716,7 @@ export default function NodeToolbarComponent({
                       shortcuts.find((obj) => obj.name === "Tool Mode")
                         ?.shortcut!
                     }
-                    value={"Tool Mode"}
+                    value={"工具模式"}
                     icon={"Hammer"}
                     dataTestId="tool-mode-button"
                     style={`${toolMode ? "text-primary" : ""} transition-all`}

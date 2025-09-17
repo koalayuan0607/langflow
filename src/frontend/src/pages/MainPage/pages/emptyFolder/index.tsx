@@ -16,10 +16,10 @@ export const EmptyFolder = ({ setOpenModal }: EmptyFolderProps) => {
           className="pt-5 font-chivo text-2xl font-semibold"
           data-testid="mainpage_title"
         >
-          {folders?.length > 1 ? "Empty folder" : "Start building"}
+          {folders?.length > 1 ? "当前空间为空" : "开始构建"}
         </h3>
         <p className="pb-5 text-sm text-secondary-foreground">
-          Begin with a template, or start from scratch.
+          从模板开始，或从头开始。
         </p>
         <Button
           variant="default"
@@ -31,7 +31,7 @@ export const EmptyFolder = ({ setOpenModal }: EmptyFolderProps) => {
             aria-hidden="true"
             className="h-4 w-4"
           />
-          <span className="whitespace-nowrap font-semibold">New Flow</span>
+          <span className="whitespace-nowrap font-semibold">新增智能体</span>
         </Button>
       </div>
     </div>
